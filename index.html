@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title >chrome easter egg: t-rex runner</title>
+    <meta name="theme-color" content="#22352b">
+    <title>🦖</title>
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
     <script src="index.js"></script>
@@ -32,13 +33,19 @@
 </body>
 
 <script>
-    document.onkeydown = function(evt) {
-    evt = evt || window.event;
-    if (evt.keyCode == 32) {
-        var box = document.getElementById("messageBox");
-        box.style.visibility="hidden";
+    function hideMessageBox() {
+        document.getElementById("messageBox").style.visibility = "hidden";
     }
-};
+    document.onkeydown = function(evt) {
+        evt = evt || window.event;
+        if (evt.keyCode == 32 || evt.keyCode == 38) {
+            hideMessageBox();
+        }
+    };
+    document.addEventListener("touchstart", hideMessageBox);
+    if ("ontouchstart" in window) {
+        document.querySelector("#messageBox h1").textContent = "Tap to start";
+    }
 </script>
     
 </html>
